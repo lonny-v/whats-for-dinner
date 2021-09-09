@@ -13,7 +13,7 @@ var recipeImage = document.getElementById('recipes');
 var ingredientList = document.getElementById('ingredients');
 var nutrition = document.getElementById('nutrition');
 var cuisineType = document.getElementById('cuisineType');
-
+var instructions = document.getElementById('instructions');
 
 var allIngredients = []
 
@@ -64,15 +64,22 @@ button.addEventListener('click', function () {
             cuisineType.innerText = cuisineTypeValue;
             nutrition.innerText = nutritionValue;
 
+            var iframe = document.createElement('iframe');
+            iframe.setAttribute('src', data['hits'][0]['recipe']['url']);
+            iframe.setAttribute('height', 1000, 'width', 100)
+            instructions.appendChild(iframe)
+
+            //instructions.innerHTML = data['hits'][0]['recipe']['url'];
+
         })
     //     .catch(err => alert('Error' + err))
 })
 
-// function clearAllFields(){
-//     inputValue.innerText="";
-//     recipesNameValue.innerText="";
-//     ingredientListValue.innerText="";
-//     cuisineTypeValue.innerText="";
-//     nutritionValue.innerText="";
+function clearAllFields(){
+    inputValue.innerText="";
+    recipesName.innerText="";
+    ingredientList.innerText="";
+    cuisineType.innerText="";
+    nutrition.innerText="";
 //     recipeImage.removeChild(img);
-// }
+}
