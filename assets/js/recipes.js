@@ -14,9 +14,13 @@ var ingredientList = document.getElementById('ingredients');
 var nutrition = document.getElementById('nutrition');
 var cuisineType = document.getElementById('cuisineType');
 var instructions = document.getElementById('instructions');
+var fortune = document.getElementById('fortune');
+var fortuneCookie= document.getElementById('fortuneCookie')
 
+//ARRAY TO HOLD INGREDIENTS, TO BE DISPLAYED AS A LIST
 var allIngredients = []
 
+//STARTS FUNCTION, USER INPUT NEEDED TO SEARCH FOR KEYWWORD
 button.addEventListener('click', function () {
     //clearAllFields()
     var inputValue = document.getElementById('inputValue').value;
@@ -30,25 +34,21 @@ button.addEventListener('click', function () {
             var nutritionValue = data['hits'][0]['recipe']['totalDaily'];
 
 
-            allIngredients.push(ingredientListValue)
-            let txt = " ";
-            allIngredients.forEach(displayIngredients)
-            ingredientList.innerHTML = txt;
-            function displayIngredients(value, index, array) {
-                txt += value + "<br>"; 
-            }
 
-
+            //DISPLAY RECIPE NAME
             recipeName.innerText = recipesNameValue;
-            //recipeImage.setAttribute(recipeImageValue);
 
+            //DISPLAY RECIPE IMAGE
             var img = document.createElement('img');
             img.setAttribute('src', data['hits'][0]['recipe']['image']);
             recipeImage.appendChild(img)
+
+            //DISPLAY CUISINE TYPE IE. AMERICAN, CHINESE
+            cuisineType.innerText = cuisineTypeValue;
+
             // var ingredients = data.list
             // var HTMLText = ""
             //var ingredientLines = data['hits'][0]['recipe']['ingredientLines']
-            // for (let i = 0; i < ingredientLines.length; i = i + 20) {
             // for (let i = 0; i < ingredientLines.length; i = i++) {
             //     console.log(i)
             //     HTMLText += `<li id="ingredientList">
@@ -61,25 +61,48 @@ button.addEventListener('click', function () {
             // }
             // console.log(HTMLText);
             // document.querySelector("#ingredients").innerText = HTMLText;
-            cuisineType.innerText = cuisineTypeValue;
-            nutrition.innerText = nutritionValue;
 
+            //DISPLAY INGREDIENTS
+            allIngredients.push(ingredientListValue)
+            let txt = " ";
+            allIngredients.forEach(displayIngredients)
+            ingredientList.innerHTML = txt;
+            function displayIngredients(value, index, array) {
+                txt += value + "<br>";
+            }
+
+            //DISPLAY NUTRITIONAL FACTS AND DAILY CALORIE INTAKE
+            //nutrition.innerText = nutritionValue;
+            //DISPLAY PREPARATION INSTRUCTIONS ON HOST WEBSITE AS AN IFRAME
             var iframe = document.createElement('iframe');
             iframe.setAttribute('src', data['hits'][0]['recipe']['url']);
             iframe.setAttribute('height', 1000, 'width', 100)
             instructions.appendChild(iframe)
-
-            //instructions.innerHTML = data['hits'][0]['recipe']['url'];
-
         })
     //     .catch(err => alert('Error' + err))
 })
 
-function clearAllFields(){
-    inputValue.innerText="";
-    recipesName.innerText="";
-    ingredientList.innerText="";
-    cuisineType.innerText="";
-    nutrition.innerText="";
-//     recipeImage.removeChild(img);
+
+//CLEAR ALL FIELDS FOR NEW SEARCH
+function clearAllFields() {
+    inputValue.innerText = "";
+    recipesName.innerText = "";
+    ingredientList.innerText = "";
+    cuisineType.innerText = "";
+    nutrition.innerText = "";
+    recipeImage.removeChild('img');
+    ingredientList.removeChild('iframe')
 }
+
+//DISPLAY FORTUNE
+
+fortune.addEventListener('click', function () {
+    fetch('https://api.quotable.io/random')
+        .then(response => response.json())
+        .then(listFortune => {
+            console.log(listFortune);
+            var fortuneContent = listFortune['content']
+            fortuneCookie.innerText = '"' + fortuneContent + '"';
+
+        })
+    })
