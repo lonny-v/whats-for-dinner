@@ -22,9 +22,6 @@ button.addEventListener('click', function () {
             var recipesNameValue = data['hits'][0]['recipe']['label'];
             var ingredientListValue = data['hits'][0]['recipe']['ingredientLines']; //NOT TO BE CONFUSED WITH INGREDIENTS!!
             var cuisineTypeValue = "Cuisine type: " + data['hits'][0]['recipe']['cuisineType'];
-            var nutritionValue = data['hits'][0]['recipe']['totalDaily'];
-
-
 
             //DISPLAY RECIPE NAME
             recipeName.innerText = recipesNameValue;
@@ -32,12 +29,7 @@ button.addEventListener('click', function () {
             //DISPLAY RECIPE IMAGE
             var img = document.createElement('img');
             img.setAttribute('src', data['hits'][0]['recipe']['image']);
-            // if(recipeImage.childNodes[0] !== null){
-            //     recipeImage.lastElementChild.setAttribute('src', data['hits'][0]['recipe']['image'])}
-            //     else {
             recipeImage.appendChild(img);
-            //}
-
 
             //DISPLAY CUISINE TYPE IE. AMERICAN, CHINESE
             cuisineType.innerText = cuisineTypeValue;
@@ -71,6 +63,5 @@ fortune.addEventListener('click', function () {
             console.log(listFortune);
             var fortuneContent = listFortune['content']
             fortuneCookie.innerText = '"' + fortuneContent + '"';
-
         })
 })
