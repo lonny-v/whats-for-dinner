@@ -1,11 +1,3 @@
-// Application ID
-// 6ac6db88
-
-// Application Keys
-// fb6969ade5b94c3dbb0367095699768b
-//'https://api.edamam.com/api/recipes/v2?type=public&q='+ inputValue +'&app_id=6ac6db88&app_key=fb6969ade5b94c3dbb0367095699768b&random=true'
-
-
 var button = document.getElementById('btn');
 var inputValue = document.getElementById('inputValue');
 var recipeName = document.getElementById('recipeName');
@@ -22,7 +14,6 @@ var allIngredients = []
 
 //STARTS FUNCTION, USER INPUT NEEDED TO SEARCH FOR KEYWWORD
 button.addEventListener('click', function () {
-    //clearAllFields()
     var inputValue = document.getElementById('inputValue').value;
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + inputValue + '&app_id=6ac6db88&app_key=fb6969ade5b94c3dbb0367095699768b&random=true')
         .then(response => response.json())
@@ -45,66 +36,34 @@ button.addEventListener('click', function () {
             //     recipeImage.lastElementChild.setAttribute('src', data['hits'][0]['recipe']['image'])}
             //     else {
             recipeImage.appendChild(img);
-                //}
-            
+            //}
+
 
             //DISPLAY CUISINE TYPE IE. AMERICAN, CHINESE
             cuisineType.innerText = cuisineTypeValue;
 
-            // var ingredients = data.list
-            // var HTMLText = ""
-            //var ingredientLines = data['hits'][0]['recipe']['ingredientLines']
-            // for (let i = 0; i < ingredientLines.length; i = i++) {
-            //     console.log(i)
-            //     HTMLText += `<li id="ingredientList">
-            //             <p>${ingredientList[i]}</p></li>`
-            //             // <p>${ingredientList[i][0]}</p>
-            //             // <p>${ingredientList[i][1]}</p>
-            //             // <p>${ingredientList[i][2]}</p>
-            //             // <p>${ingredientList[i][3]}</p>
-            //             // <p>${ingredientList[i][4]}</p></li>`
-            // }
-            // console.log(HTMLText);
-            // document.querySelector("#ingredients").innerText = HTMLText;
-console.log(allIngredients,ingredientListValue)
+            console.log(allIngredients, ingredientListValue)
             //DISPLAY INGREDIENTS
             allIngredients.push(ingredientListValue)
             let txt = "<ul>";
             for (let i = 0; i < ingredientListValue.length; i++) {
-                txt += "<li>" +ingredientListValue[i] + "</li>";
+                txt += "<li>" + ingredientListValue[i] + "</li>";
             }
             ingredientList.innerHTML = txt + "</ul>";
 
-
-            //DISPLAY NUTRITIONAL FACTS AND DAILY CALORIE INTAKE
-            //nutrition.innerText = nutritionValue;
             //DISPLAY PREPARATION INSTRUCTIONS ON HOST WEBSITE AS AN IFRAME
             var iframe = document.createElement('iframe');
             iframe.setAttribute('src', data['hits'][0]['recipe']['url']);
             iframe.setAttribute('height', 1000, 'width', 100)
             //var removeIframe = document.querySelector('iframe')
-            if (instructions.childNodes[0]!=null){
-            instructions.removeChild(instructions.childNodes[0])}
+            if (instructions.childNodes[0] != null) {
+                instructions.removeChild(instructions.childNodes[0])
+            }
             instructions.appendChild(iframe)
         })
-    //     .catch(err => alert('Error' + err))
 })
 
-
-// textHTML + = `<a href=""><img src="" /></a>
-//CLEAR ALL FIELDS FOR NEW SEARCH
-function clearAllFields() {
-    inputValue.innerText = "";
-    recipesName.innerText = "";
-    ingredientList.innerText = "";
-    cuisineType.innerText = "";
-    nutrition.innerText = "";
-    recipeImage.removeChild('img');
-    ingredientList.removeChild('iframe')
-}
-
 //DISPLAY FORTUNE
-
 fortune.addEventListener('click', function () {
     fetch('https://api.quotable.io/random')
         .then(response => response.json())
