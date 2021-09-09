@@ -9,10 +9,13 @@
 var button = document.getElementById('btn');
 var inputValue = document.getElementById('inputValue');
 var recipeName = document.getElementById('recipeName');
-var recipeImage = document.getElementById('recipeImage');
+var recipeImage = document.getElementById('recipes');
 var ingredientList = document.getElementById('ingredients');
 var nutrition = document.getElementById('nutrition');
 var cuisineType = document.getElementById('cuisineType');
+
+
+var allIngredients = []
 
 button.addEventListener('click', function () {
 
@@ -28,9 +31,21 @@ button.addEventListener('click', function () {
             var nutritionValue = data['hits'][0]['recipe']['totalDaily'];
 
 
+            allIngredients.push(ingredientListValue)
+            let txt = " ";
+            allIngredients.forEach(displayIngredients)
+            ingredientList.innerHTML = txt;
+            function displayIngredients(value, index, array) {
+                txt += value + "<br>"; 
+            }
+
+
             recipeName.innerText = recipesNameValue;
             //recipeImage.setAttribute(recipeImageValue);
-            ingredientList.innerText = ingredientListValue;//join(<br/>)
+
+            var img = document.createElement('img');
+            img.setAttribute('src', data['hits'][0]['recipe']['image']);
+            recipeImage.appendChild(img)
             // var ingredients = data.list
             // var HTMLText = ""
             //var ingredientLines = data['hits'][0]['recipe']['ingredientLines']
