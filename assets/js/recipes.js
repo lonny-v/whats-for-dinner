@@ -18,14 +18,13 @@ var cuisineType = document.getElementById('cuisineType');
 var allIngredients = []
 
 button.addEventListener('click', function () {
-
+    //clearAllFields()
     var inputValue = document.getElementById('inputValue').value;
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + inputValue + '&app_id=6ac6db88&app_key=fb6969ade5b94c3dbb0367095699768b&random=true')
         .then(response => response.json())
         .then(data => {
             console.log(data)
             var recipesNameValue = data['hits'][0]['recipe']['label'];
-            //var recipeImageValue = data['hits'][0]['recipe']['image'];
             var ingredientListValue = data['hits'][0]['recipe']['ingredientLines']; //NOT TO BE CONFUSED WITH INGREDIENTS!!
             var cuisineTypeValue = "Cuisine type: " + data['hits'][0]['recipe']['cuisineType'];
             var nutritionValue = data['hits'][0]['recipe']['totalDaily'];
@@ -63,8 +62,17 @@ button.addEventListener('click', function () {
             // console.log(HTMLText);
             // document.querySelector("#ingredients").innerText = HTMLText;
             cuisineType.innerText = cuisineTypeValue;
-            nutrition.innerHTML = nutritionValue;
+            nutrition.innerText = nutritionValue;
 
         })
     //     .catch(err => alert('Error' + err))
 })
+
+// function clearAllFields(){
+//     inputValue.innerText="";
+//     recipesNameValue.innerText="";
+//     ingredientListValue.innerText="";
+//     cuisineTypeValue.innerText="";
+//     nutritionValue.innerText="";
+//     recipeImage.removeChild(img);
+// }
