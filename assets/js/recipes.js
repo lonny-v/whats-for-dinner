@@ -15,7 +15,7 @@ var nutrition = document.getElementById('nutrition');
 var cuisineType = document.getElementById('cuisineType');
 var instructions = document.getElementById('instructions');
 var fortune = document.getElementById('fortune');
-var fortuneCookie= document.getElementById('fortuneCookie')
+var fortuneCookie = document.getElementById('fortuneCookie')
 
 //ARRAY TO HOLD INGREDIENTS, TO BE DISPLAYED AS A LIST
 var allIngredients = []
@@ -41,7 +41,12 @@ button.addEventListener('click', function () {
             //DISPLAY RECIPE IMAGE
             var img = document.createElement('img');
             img.setAttribute('src', data['hits'][0]['recipe']['image']);
-            recipeImage.appendChild(img)
+            // if(recipeImage.childNodes[0] !== null){
+            //     recipeImage.lastElementChild.setAttribute('src', data['hits'][0]['recipe']['image'])}
+            //     else {
+            recipeImage.appendChild(img);
+                //}
+            
 
             //DISPLAY CUISINE TYPE IE. AMERICAN, CHINESE
             cuisineType.innerText = cuisineTypeValue;
@@ -61,15 +66,15 @@ button.addEventListener('click', function () {
             // }
             // console.log(HTMLText);
             // document.querySelector("#ingredients").innerText = HTMLText;
-
+console.log(allIngredients,ingredientListValue)
             //DISPLAY INGREDIENTS
             allIngredients.push(ingredientListValue)
-            let txt = " ";
-            allIngredients.forEach(displayIngredients)
-            ingredientList.innerHTML = txt;
-            function displayIngredients(value, index, array) {
-                txt += value + "<br>";
+            let txt = "<ul>";
+            for (let i = 0; i < ingredientListValue.length; i++) {
+                txt += "<li>" +ingredientListValue[i] + "</li>";
             }
+            ingredientList.innerHTML = txt + "</ul>";
+
 
             //DISPLAY NUTRITIONAL FACTS AND DAILY CALORIE INTAKE
             //nutrition.innerText = nutritionValue;
@@ -77,12 +82,16 @@ button.addEventListener('click', function () {
             var iframe = document.createElement('iframe');
             iframe.setAttribute('src', data['hits'][0]['recipe']['url']);
             iframe.setAttribute('height', 1000, 'width', 100)
+            //var removeIframe = document.querySelector('iframe')
+            if (instructions.childNodes[0]!=null){
+            instructions.removeChild(instructions.childNodes[0])}
             instructions.appendChild(iframe)
         })
     //     .catch(err => alert('Error' + err))
 })
 
 
+// textHTML + = `<a href=""><img src="" /></a>
 //CLEAR ALL FIELDS FOR NEW SEARCH
 function clearAllFields() {
     inputValue.innerText = "";
@@ -105,4 +114,4 @@ fortune.addEventListener('click', function () {
             fortuneCookie.innerText = '"' + fortuneContent + '"';
 
         })
-    })
+})
