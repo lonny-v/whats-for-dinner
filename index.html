@@ -4,9 +4,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's for Dinner?</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>What's For Dinner</title>
 </head>
-<body>
+
+<body background="https://i.pinimg.com/originals/43/84/88/438488ee81ba24bdbf365ee7d95b8379.jpg">
+
+    <div class="container mx-auto w-1/2 bg-green-100">
+        <h1 class="text-5xl text-center font-serif"><u>What's For Dinner?</u></h1>
+        <br><br>
+        <p class="text-center font-bold text-3 font-serif">Hungry? Indecisive? Don't want to go out to eat? You're in the right place. Search below for a keyword like rice or eggs and a recipe will appear.
+    </p>
+    <br>
+    </div>
     
+    <div class="font-serif container mx-auto w-1/6 text-center bg-green-200 border-8">
+        <br>
+        <input class="text-center" id="inputValue" type=text placeholder=" Food Keyword ">
+        <br>
+        <button id="btn" type="search" class="text-3 font-bold">Search</button>
+    </div>
+
+
+    <div class="font-serif container mx-auto w-1/2 text-center bg-green-300" id= "recipes">
+        <h2 class="text-3xl">Recipes</h2>
+        <br>
+<<<<<<< HEAD
+        <h3 id="recipeName"></h3>
+        <h5 id="cuisineType"></h5>
+        <p></p>
+=======
+        <h3 class= "mx-auto" id="recipeName"></h3>
+        <h5 class= "mx-auto" id="cuisineType"></h5>
+        <p class="mx-auto font-serif"></p>
+>>>>>>> feature/html-page
+        <br><br><br>
+    </div>
+    
+    <div class="font-serif container mx-auto w-1/2 h-1/12 text-center bg-green-400 justify-content" id="ingredients">
+        <h2 class="text-3xl">Ingredients</h2>
+<<<<<<< HEAD
+        <p></p>
+=======
+        <p class= "mx-auto justify-center"></p>
+>>>>>>> feature/html-page
+        <br><br><br>
+    </div>
+
+    <div class="font-serif container mx-auto text-center w-1/2 bg-green-500" id="instructions">
+        <h2 class="text-3xl">Instructions</h2>
+<<<<<<< HEAD
+        <p class="font-serif"></p>
+=======
+        <p class="font-serif mx-auto"></p>
+>>>>>>> feature/html-page
+        <br><br><br>
+    </div>
+
+    <div class="font-serif container mx-auto text-center w-1/2 bg-green-600" id="fortune">
+        <img class="mx-auto" src="https://i.pinimg.com/originals/51/c5/34/51c53424d2ae15709414a0ac7236a640.gif">
+        <button id="fortuneCookie">Click for Fortune</button>
+        <br><br><br>
+    </div>
+</div>
+    <script src="assets/js/recipes.js"></script>
+
 </body>
 </html>
